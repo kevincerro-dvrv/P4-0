@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &66142456 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8655639459748352927, guid: 36a8c27a6af60fe49ab3e28510be0ebb, type: 3}
-  m_PrefabInstance: {fileID: 608348295}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &191972945
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde1505d4f955044785cb15ca6610c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal: {fileID: 66142456}
 --- !u!195 &191972952
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -478,6 +472,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -524,11 +519,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
+  near clip plane: 0.1
+  far clip plane: 5000
+  field of view: 40
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -552,13 +547,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94f101546db5a045814f99c0d49ad37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 50
+  accSprintMultiplier: 4
+  lookSensitivity: 1
+  dampingCoefficient: 5
 --- !u!1 &1409277896 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8655639460882247898, guid: 36a8c27a6af60fe49ab3e28510be0ebb, type: 3}
@@ -626,6 +637,54 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: c9b1623833065a04fa4646dfb4aced75, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &1504272497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1504272498}
+  - component: {fileID: 1504272499}
+  m_Layer: 0
+  m_Name: 'GameManager  '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1504272498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504272497}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.07783, y: 19.341604, z: 4.869742}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1504272499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504272497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eabdf8ffdf0716468b5429905221370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players:
+  - {fileID: 191972951}
+  - {fileID: 0}
+  activePlayer: {fileID: 191972951}
 --- !u!1 &1950564398
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,16 +825,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1950564398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde1505d4f955044785cb15ca6610c4a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c4f91b87f681534b8e5f6c16ac44d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal: {fileID: 191972950}
+  target: {fileID: 191972945}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
+  - {fileID: 1504272498}
   - {fileID: 191972950}
   - {fileID: 1950564402}
   - {fileID: 608348295}
